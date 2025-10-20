@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Connect — Public WiFi</title>
+  <meta name="description" content="Captive portal — press Connect to access the network" />
+  <style>
+    :root{--bg:#0f172a;--card:#0b1220;--accent:#06b6d4;--muted:#9aa6b2;--glass: rgba(255,255,255,0.04)}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#e6eef6;background:linear-gradient(180deg,var(--bg),#071028);}
+    .wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:32px}
+    .card{width:100%;max-width:920px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.6);display:grid;grid-template-columns:1fr 360px;gap:20px}
+    .left{padding:8px}
+    .logo{display:flex;gap:12px;align-items:center}
+    .logo .badge{width:56px;height:56px;border-radius:12px;background:var(--glass);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;color:var(--accent)}
+    h1{margin:14px 0 6px;font-size:22px}
+    p.lead{margin:6px 0 18px;color:var(--muted)}
+    ul.features{margin:10px 0 0;padding-left:18px;color:var(--muted)}
+    .right{display:flex;flex-direction:column;gap:12px;align-items:center;padding:12px}
+    .cta{width:100%;display:flex;flex-direction:column;gap:10px;padding:18px;background:rgba(255,255,255,0.02);border-radius:10px}
+    button.connect{background:linear-gradient(90deg,var(--accent),#0ea5a3);border:none;padding:14px;border-radius:9px;font-weight:700;font-size:16px;cursor:pointer}
+    button.connect:active{transform:translateY(1px)}
+    .secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:8px;color:var(--muted);cursor:pointer}
+    .small{font-size:13px;color:var(--muted)}
+    .terms{display:flex;gap:8px;align-items:center}
+    .status{height:36px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(0,0,0,0.25);color:var(--muted)}
+    footer{grid-column:1 / -1;padding-top:10px;color:var(--muted);font-size:13px;text-align:center}
+    @media(max-width:880px){.card{grid-template-columns:1fr;max-width:520px}.right{align-items:stretch}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card" role="main" aria-labelledby="portal-title">
+      <div class="left">
+        <div class="logo">
+          <div class="badge">Wi‑Fi</div>
+          <div>
+            <div style="font-weight:700">Public Network — Access Zone</div>
+            <div class="small">Provider: Google</div>
+          </div>
+        </div>
+
+        <h1 id="portal-title">Welcome — Connect to the Network</h1>
+        <p class="lead">Press the button to start the authentication process and access the Internet. This page will automatically display when opening any browser.</p>
+
+        <ul class="features">
+          <li>Fast and secured connection for 30 minutes.</li>
+          <li>Accept the terms and sign-in with your Google account.</li>
+          <li>Supports mobile devices and computers.</li>
+        </ul>
+      </div>
+
+      <aside class="right" aria-label="Connection Panel">
+        <div class="cta" role="region" aria-labelledby="cta-title">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div id="cta-title" style="font-weight:700">Ready to Browse</div>
+              <div class="small">Connect now and enjoy the Internet.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:10px;flex-direction:column;margin-top:8px">
+            <label class="terms"><input type="checkbox" id="accept" /> <span class="small">I accept the <a href="#terms" onclick="return false">terms and conditions</a></span></label>
+
+            <button class="connect" id="connectBtn" aria-live="polite" onclick="onConnect()">Connect to the Network</button>
+            <!-- <button class="secondary" id="helpBtn">More Information</button> -->
+          </div>
+        </div>
+
+        <div style="width:100%;display:flex;gap:10px;justify-content:space-between;align-items:center">
+          <div class="small">Duration: 30 min • Unlimited speed</div>
+          <div class="small">Support: +1 (800) 555‑8585</div>
+        </div>
+      </aside>
+
+      <footer>
+        By clicking "Connect", you accept the usage policies of ExampleNet. If you have problems, try reconnecting or contact support.
+      </footer>
+    </div>
+  </div>
+</body>
+<script>
+    function onConnect() {
+      window.location.href = "/connect"; // Replace with your desired path
+    }
+  </script>
+</html>
