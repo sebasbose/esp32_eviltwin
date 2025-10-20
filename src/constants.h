@@ -1,3 +1,5 @@
 #define BAUD_RATE 9600
-#define SSID "Free WiFi"
-#define PASSWORD ""
+#define WEB_SERVER_PORT 80
+#define DNS_SERVER_PORT 53
+#define NETWORK_SSID "Free WiFi"
+#define NETWORK_PASSWORD ""

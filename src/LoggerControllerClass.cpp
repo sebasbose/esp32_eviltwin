@@ -18,3 +18,5 @@ void LoggerControllerClass::logEvent(const String& message) {
   Serial.print("EVENT: ");
   Serial.println(message);
 }
+
+LoggerControllerClass LoggerController;

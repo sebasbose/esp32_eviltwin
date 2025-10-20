@@ -45,3 +45,5 @@ bool FileSystemControllerClass::deleteFile(const String& path) {
     LoggerController.logEvent("File deleted successfully.");
     return true;
 }
+
+FileSystemControllerClass FileSystemController;
