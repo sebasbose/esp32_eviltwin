@@ -10,11 +10,15 @@ void WebServerControllerClass::initialize(IPAddress apIP, IPAddress netMsk) {
     WiFi.softAP(NETWORK_SSID, NETWORK_PASSWORD);
 
     this->webServer->on("/", HTTP_GET, [](AsyncWebServerRequest *request){
-        request->send(200, "text/html", "<h1>Welcome to the Captive Portal!</h1><form action='/connect' method='POST'><input type='text' name='ssid' placeholder='SSID'><br><input type='password' name='password' placeholder='Password'><br><input type='submit' value='Connect'></form>");
+        String htmlContent = "";
+        FileSystemController.readFile("/index.html", htmlContent);
+        request->send(200, "text/html", htmlContent);
     });
 
     this->webServer->on("/connect", HTTP_GET, [](AsyncWebServerRequest *request){
-        request->send(200, "text/html", "");
+        String htmlContent = "";
+        FileSystemController.readFile("/connect.html", htmlContent);
+        request->send(200, "text/html", htmlContent);
     });
 
     this->webServer->onNotFound([](AsyncWebServerRequest *request){
