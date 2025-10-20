@@ -4,6 +4,8 @@
 #include <ESPAsyncWebServer.h>
 #include <DNSServer.h>
 #include <WiFi.h>
+#include <LoggerControllerClass.h>
+#include <FileSystemControllerClass.h>
 #include "constants.h"
 
 class WebServerControllerClass {
@@ -11,12 +13,9 @@ private:
     DNSServer *dnsServer;
     AsyncWebServer *webServer;
 
-    IPAddress apIP;
-    IPAddress netMsk;
-
 public:
     WebServerControllerClass();
-    void initialize();
+    void initialize(IPAddress apIP, IPAddress netMsk);
     void handleRequest();
     void loop();
 };
