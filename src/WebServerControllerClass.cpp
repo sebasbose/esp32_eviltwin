@@ -21,6 +21,9 @@ void WebServerControllerClass::initialize(IPAddress apIP, IPAddress netMsk) {
         request->send(200, "text/html", htmlContent);
     });
 
+    // Serve static assets using serveStatic for better binary file handling
+    this->webServer->serveStatic("/assets/", LittleFS, "/assets/");
+
     this->webServer->onNotFound([](AsyncWebServerRequest *request){
         request->redirect("/");
     });

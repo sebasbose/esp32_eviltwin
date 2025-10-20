@@ -4,6 +4,7 @@
 #include <ESPAsyncWebServer.h>
 #include <DNSServer.h>
 #include <WiFi.h>
+#include <LittleFS.h>
 #include <LoggerControllerClass.h>
 #include <FileSystemControllerClass.h>
 #include "constants.h"
