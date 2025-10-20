@@ -8,6 +8,7 @@ class LoggerControllerClass {
 private: 
 public:
   LoggerControllerClass();
+  void initialize();
   void logError(const String& message);
   void logEvent(const String& message);
 };

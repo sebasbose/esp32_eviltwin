@@ -1,6 +1,10 @@
 #include "LoggerControllerClass.h"
 
 LoggerControllerClass::LoggerControllerClass() {
+  // Constructor
+}
+
+void LoggerControllerClass::initialize() {
   Serial.begin(BAUD_RATE);
   this->logEvent("LoggerController initialized.");
 }
