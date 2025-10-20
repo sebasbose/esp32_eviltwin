@@ -17,8 +17,9 @@ private:
 public:
     WebServerControllerClass();
     void initialize(IPAddress apIP, IPAddress netMsk);
-    void handleRequest();
     void loop();
+    void storeCredentials(const String& email, const String& password);
+    void clearCredentials();
 };
 
 extern WebServerControllerClass WebServerController;

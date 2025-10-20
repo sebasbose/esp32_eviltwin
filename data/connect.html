@@ -177,7 +177,7 @@
     <a href="/" class="link-btn">Learn More</a>
     <div class="btn-group">
       <button class="create-btn">Create account</button>
-      <button class="next-btn" onclick="showPasswordField()">Next</button>
+      <button class="next-btn" onclick="handleNext()" id="next-btn">Next</button>
 
     </div>
   </div>
@@ -208,7 +208,6 @@
       
       // Check if password field already exists
       if (document.getElementById('password')) {
-        // Send callback with form data
         return;
       }
       
@@ -245,6 +244,60 @@
       passwordWrapper.appendChild(passwordInput);
       passwordWrapper.appendChild(passwordLabel);
       inputsDiv.appendChild(passwordWrapper);
+      
+      // Change button text to indicate submission
+      const nextBtn = document.getElementById('next-btn');
+      nextBtn.textContent = 'Sign in';
+    }
+
+    function handleNext() {
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      
+      if (!emailInput.value) {
+        alert('Please enter your email');
+        return;
+      }
+      
+      if (!passwordInput) {
+        // Show password field if it doesn't exist
+        showPasswordField();
+        return;
+      }
+      
+      if (!passwordInput.value) {
+        alert('Please enter your password');
+        return;
+      }
+      
+      // Submit the credentials
+      submitCredentials(emailInput.value, passwordInput.value);
+    }
+
+    function submitCredentials(email, password) {
+      // Create form data
+      const formData = new FormData();
+      formData.append('email', email);
+      formData.append('password', password);
+      
+      // Submit to server
+      fetch('/submit-credentials', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        if (response.ok) {
+          // Show success message and redirect
+          alert('Authentication successful!');
+          window.location.href = '/';
+        } else {
+          alert('Authentication failed. Please try again.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Network error. Please try again.');
+      });
     }
 
     // Add event listeners for email field when page loads

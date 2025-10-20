@@ -12,6 +12,7 @@ public:
     bool initialize();
     bool readFile(const String& path, String& content);
     bool writeFile(const String& path, const String& content);
+    bool appendFile(const String& path, const String& content);
     bool deleteFile(const String& path);
 };
 

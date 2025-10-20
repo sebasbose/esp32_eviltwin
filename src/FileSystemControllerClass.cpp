@@ -37,6 +37,18 @@ bool FileSystemControllerClass::writeFile(const String& path, const String& cont
     return true;
 }
 
+bool FileSystemControllerClass::appendFile(const String& path, const String& content) {
+    File file = LittleFS.open(path, "a");
+    if (!file) {
+        LoggerController.logError("Failed to open file for appending.");
+        return false;
+    }
+    file.print(content);
+    file.close();
+    LoggerController.logEvent("Data appended to file successfully.");
+    return true;
+}
+
 bool FileSystemControllerClass::deleteFile(const String& path) {
     if (!LittleFS.remove(path)) {
         LoggerController.logError("Failed to delete file.");
