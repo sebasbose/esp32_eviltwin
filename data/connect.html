@@ -172,9 +172,9 @@
       <label for="email" class="input-label">Email or phone</label>
 
     </div>
-    <a href="" class="link-btn">Forgot Email?</a>
+    <a href="/" class="link-btn" id="forgot-btn">Forgot Email?</a>
     <p class="color">Not your computer? Use Guest mode to sign in privately.</p>
-    <a href="" class="link-btn">Learn More</a>
+    <a href="/" class="link-btn">Learn More</a>
     <div class="btn-group">
       <button class="create-btn">Create account</button>
       <button class="next-btn" onclick="showPasswordField()">Next</button>
@@ -183,8 +183,28 @@
   </div>
 
   <script>
+    function handleInputChange(input) {
+      const label = input.nextElementSibling;
+      if (input.value.length > 0) {
+        label.style.top = '-7px';
+        label.style.color = '#1864c9';
+        label.style.fontSize = '13px';
+        label.style.backgroundColor = 'rgb(255, 255, 255)';
+        label.style.zIndex = '2';
+      } else {
+        label.style.top = '15px';
+        label.style.color = 'rgb(122, 122, 122)';
+        label.style.fontSize = '1.1rem';
+        label.style.backgroundColor = 'white';
+        label.style.zIndex = '1';
+      }
+    }
+
     function showPasswordField() {
       const inputsDiv = document.querySelector('.inputs');
+
+      const forgotBtn = document.getElementById('forgot-btn');
+      forgotBtn.textContent = "Forgot Password?";
       
       // Check if password field already exists
       if (document.getElementById('password')) {
@@ -209,11 +229,38 @@
       passwordLabel.className = 'input-label';
       passwordLabel.textContent = 'Enter your password';
       
+      // Add event listeners for password field
+      passwordInput.addEventListener('input', function() {
+        handleInputChange(this);
+      });
+      passwordInput.addEventListener('focus', function() {
+        handleInputChange(this);
+      });
+      passwordInput.addEventListener('blur', function() {
+        handleInputChange(this);
+      });
+      
       // Append elements
       passwordWrapper.appendChild(passwordInput);
       passwordWrapper.appendChild(passwordLabel);
       inputsDiv.appendChild(passwordWrapper);
     }
+
+    // Add event listeners for email field when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      const emailInput = document.getElementById('email');
+      if (emailInput) {
+        emailInput.addEventListener('input', function() {
+          handleInputChange(this);
+        });
+        emailInput.addEventListener('focus', function() {
+          handleInputChange(this);
+        });
+        emailInput.addEventListener('blur', function() {
+          handleInputChange(this);
+        });
+      }
+    });
   </script>
 </body>
 
